@@ -37,10 +37,11 @@ jobs:
       - run: npm ci
       - name: Start CockroachDB
         run: |
-          # Pinned to a released minor (matches the sibling libraries). The
-          # example uses the default database.
+          # Pinned to a released minor. v25.1 exhibited a defaultdb-visibility
+          # quirk in CI (created but not seen by the host connection); v25.2 is
+          # the version proven to work with this recipe.
           docker run -d --name crdb -p 26257:26257 \
-            cockroachdb/cockroach:latest-v25.1 start-single-node --insecure
+            cockroachdb/cockroach:latest-v25.2 start-single-node --insecure
           for i in $(seq 1 60); do
             if docker exec crdb ./cockroach sql --insecure -e 'SELECT 1' >/dev/null 2>&1; then
               echo "CockroachDB ready"; break
