@@ -37,14 +37,19 @@ jobs:
       - run: npm ci
       - name: Start CockroachDB
         run: |
+          # Pinned to a released minor (matches the sibling libraries). The
+          # example uses the default database.
           docker run -d --name crdb -p 26257:26257 \
-            cockroachdb/cockroach:latest start-single-node --insecure
+            cockroachdb/cockroach:latest-v25.1 start-single-node --insecure
           for i in $(seq 1 60); do
             if docker exec crdb ./cockroach sql --insecure -e 'SELECT 1' >/dev/null 2>&1; then
               echo "CockroachDB ready"; break
             fi
             sleep 2
           done
+          # defaultdb normally exists, but create it explicitly to avoid a race
+          # between SQL becoming available and the database being created.
+          docker exec crdb ./cockroach sql --insecure -e 'CREATE DATABASE IF NOT EXISTS defaultdb'
       - name: Build + run example against the cluster
         env:
           CRDB_URL: postgres://root@localhost:26257/defaultdb?sslmode=disable
