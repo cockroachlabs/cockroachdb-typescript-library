@@ -1,0 +1,23 @@
+{
+  "name": "cockroachdb-typescript-library",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CockroachDB client library for TypeScript/Node — retries, follower reads, multi-region, CDC, vector search, Continuum.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b",
+    "test": "vitest run",
+    "clean": "tsc -b --clean"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "typescript": "^5.6",
+    "vitest": "^2.1"
+  }
+}

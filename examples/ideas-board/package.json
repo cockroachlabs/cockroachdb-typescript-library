@@ -1,0 +1,18 @@
+{
+  "name": "ideas-board",
+  "version": "0.1.0",
+  "description": "Reference app for the CockroachDB TypeScript library — the quickstart demo.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "tsc -b",
+    "start": "node dist/main.js"
+  },
+  "dependencies": {
+    "@cockroachdb/pg": "^0.1.0",
+    "@cockroachdb/cdc": "^0.1.0",
+    "@cockroachdb/continuum": "^0.1.0",
+    "@cockroachdb/testing": "^0.1.0"
+  }
+}

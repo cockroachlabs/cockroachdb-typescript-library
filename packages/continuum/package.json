@@ -1,0 +1,16 @@
+{
+  "name": "@cockroachdb/continuum",
+  "version": "0.1.0",
+  "description": "CockroachDB Continuum support surface: vCluster QoS, Plenum storage, Aegis, MCP, and Cloud clients.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" } },
+  "files": ["dist"],
+  "publishConfig": { "registry": "https://cockroachlabs.github.io/cockroachdb-typescript-library/" },
+  "scripts": { "build": "tsc -b" },
+  "dependencies": {
+    "@cockroachdb/pg": "^0.1.0"
+  }
+}

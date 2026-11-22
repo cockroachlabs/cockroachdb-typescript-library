@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "rootDir": "src", "outDir": "dist" },
+  "references": [
+    { "path": "../../packages/pg" },
+    { "path": "../../packages/cdc" },
+    { "path": "../../packages/continuum" },
+    { "path": "../../packages/testing" }
+  ],
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test.ts"]
+}

@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: build, typecheck, unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Typecheck & build
+        run: npm run build
+      - name: Unit tests (no database)
+        run: npm test
+
+  integration:
+    name: integration tests (live cluster)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Start CockroachDB
+        run: |
+          docker run -d --name crdb -p 26257:26257 \
+            cockroachdb/cockroach:latest start-single-node --insecure
+          for i in $(seq 1 60); do
+            if docker exec crdb ./cockroach sql --insecure -e 'SELECT 1' >/dev/null 2>&1; then
+              echo "CockroachDB ready"; break
+            fi
+            sleep 2
+          done
+      - name: Build + run example against the cluster
+        env:
+          CRDB_URL: postgres://root@localhost:26257/defaultdb?sslmode=disable
+        run: |
+          npm run build
+          node examples/ideas-board/dist/main.js
