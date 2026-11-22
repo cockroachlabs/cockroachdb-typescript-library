@@ -56,4 +56,11 @@ jobs:
           CRDB_URL: postgres://root@localhost:26257/defaultdb?sslmode=disable
         run: |
           npm run build
+          # start-single-node finalizes defaultdb asynchronously after SQL is up,
+          # so poll the real host connection path (via pg) until it answers before
+          # running the example.
+          for i in $(seq 1 30); do
+            node -e "const{Client}=require('pg');const c=new Client(process.env.CRDB_URL);c.connect().then(()=>c.query('SELECT 1')).then(()=>c.end()).then(()=>process.exit(0)).catch(()=>process.exit(1))" && break
+            echo "waiting for defaultdb..."; sleep 2
+          done
           node examples/ideas-board/dist/main.js
