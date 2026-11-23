@@ -56,10 +56,20 @@ async function liveDemo(url: string): Promise<void> {
     await svc.upvote(id);
     await svc.createIdea('Export to CSV');
 
-    const top = await svc.topIdeas(5);
-    console.log('top ideas (follower read):');
-    for (const idea of top) {
-      console.log(`  ${String(idea.votes).padStart(3)} votes — ${idea.title}`);
+    // A follower read runs AS OF SYSTEM TIME in the past. Against schema created
+    // moments ago (as here) that timestamp can predate the table, so the read
+    // reports the relation as missing. In a running system the data is far older
+    // than the staleness window; this only surfaces right after setup.
+    try {
+      const top = await svc.topIdeas(5);
+      console.log('top ideas (follower read):');
+      for (const idea of top) {
+        console.log(`  ${String(idea.votes).padStart(3)} votes — ${idea.title}`);
+      }
+    } catch (err) {
+      console.log(
+        `top ideas (follower read): snapshot not yet caught up (${(err as Error).message})`,
+      );
     }
 
     await pool.check();
