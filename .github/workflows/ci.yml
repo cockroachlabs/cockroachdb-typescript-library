@@ -65,4 +65,9 @@ jobs:
             fi
             echo "waiting for defaultdb..."; sleep 2
           done
+          # The demo's follower read uses AS OF SYSTEM TIME now()-5s. On a brand-new
+          # cluster defaultdb is younger than that window, so the historical read
+          # would hit "database does not exist" at that past timestamp. Wait out the
+          # fixed 5s window (plus margin) so the snapshot predates the read.
+          sleep 7
           node examples/ideas-board/dist/main.js
