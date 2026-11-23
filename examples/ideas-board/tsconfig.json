@@ -4,6 +4,7 @@
   "references": [
     { "path": "../../packages/pg" },
     { "path": "../../packages/cdc" },
+    { "path": "../../packages/ai" },
     { "path": "../../packages/continuum" },
     { "path": "../../packages/testing" }
   ],
