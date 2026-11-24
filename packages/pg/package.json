@@ -1,6 +1,6 @@
 {
   "name": "@cockroachdb/pg",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "node-postgres adapter for CockroachDB: transaction retries on 40001, follower reads, @transactional decorator, metrics, health.",
   "license": "Apache-2.0",
   "type": "module",
@@ -20,7 +20,7 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@cockroachdb/core": "^0.1.0",
+    "@cockroachdb/core": "^0.2.0",
     "pg": "^8.13"
   },
   "devDependencies": {

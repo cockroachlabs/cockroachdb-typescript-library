@@ -1,6 +1,6 @@
 {
   "name": "@cockroachdb/testing",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Test harness for CockroachDB client code: concurrency runner, retry simulator, and a fake SQLSTATE error.",
   "license": "Apache-2.0",
   "type": "module",
@@ -11,6 +11,6 @@
   "publishConfig": { "registry": "https://cockroachlabs.github.io/cockroachdb-typescript-library/" },
   "scripts": { "build": "tsc -b" },
   "dependencies": {
-    "@cockroachdb/core": "^0.1.0"
+    "@cockroachdb/core": "^0.2.0"
   }
 }

@@ -10,10 +10,10 @@
     "start": "node dist/main.js"
   },
   "dependencies": {
-    "@cockroachdb/pg": "^0.1.0",
+    "@cockroachdb/pg": "^0.2.0",
     "@cockroachdb/cdc": "^0.1.0",
-    "@cockroachdb/ai": "^0.1.0",
-    "@cockroachdb/continuum": "^0.1.0",
-    "@cockroachdb/testing": "^0.1.0"
+    "@cockroachdb/ai": "^0.2.0",
+    "@cockroachdb/continuum": "^0.2.0",
+    "@cockroachdb/testing": "^0.2.0"
   }
 }
