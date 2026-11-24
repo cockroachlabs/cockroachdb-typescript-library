@@ -6,6 +6,7 @@
     { "path": "../../packages/cdc" },
     { "path": "../../packages/ai" },
     { "path": "../../packages/continuum" },
+    { "path": "../../packages/drizzle" },
     { "path": "../../packages/testing" }
   ],
   "include": ["src/**/*"],

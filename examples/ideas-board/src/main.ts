@@ -16,7 +16,7 @@ import { IdeaService, type Idea } from './service.js';
 import { topIdeasFollower } from './followerread.js';
 import { meteredPool, printMetrics } from './metrics.js';
 import { IdeaChangefeedHandler } from './cdc.js';
-import { RegionalIdeaService, regionalSetupSql } from './multiregion.js';
+import { RegionalIdeaService, regionalSetupSql, verifyIdeasLocality } from './multiregion.js';
 import { SemanticIdeaService } from './semanticsearch.js';
 
 async function offlineDemos(): Promise<void> {
@@ -100,6 +100,11 @@ async function liveDemo(url: string): Promise<void> {
         const regional = new RegionalIdeaService(pool);
         const rid = await regional.addInRegion('us-east1', 'A regional idea');
         console.log(`homed idea ${rid} to region ${await regional.regionOf(rid)}`);
+        // Verify the Drizzle REGIONAL BY ROW marker against the live schema.
+        const check = await verifyIdeasLocality(pool, 'warn');
+        console.log(
+          `multi-region check: ${check.isEmpty() ? 'schema matches markers' : `${check.problems.length} problem(s)`}`,
+        );
       } catch (e) {
         console.error(`multi-region unavailable: ${(e as Error).message}`);
       }
