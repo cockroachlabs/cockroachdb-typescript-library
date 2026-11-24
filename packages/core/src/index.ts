@@ -17,4 +17,5 @@ export * from './circuitBreaker.js';
 export * from './metrics.js';
 export * from './health.js';
 export * from './middleware.js';
+export * from './multiregion.js';
 export * as ddl from './ddl.js';

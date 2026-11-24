@@ -66,3 +66,7 @@ jobs:
             echo "waiting for defaultdb..."; sleep 2
           done
           node examples/ideas-board/dist/main.js
+      - name: Multi-region check integration tests (vitest, gated on CRDB_URL)
+        env:
+          CRDB_URL: postgres://root@localhost:26257/defaultdb?sslmode=disable
+        run: npm test

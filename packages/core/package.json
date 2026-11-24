@@ -1,6 +1,6 @@
 {
   "name": "@cockroachdb/core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Driver-agnostic CockroachDB client core: retry, follower reads, region homing, circuit breaker, metrics/health.",
   "license": "Apache-2.0",
   "type": "module",
