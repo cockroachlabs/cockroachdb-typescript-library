@@ -1,4 +1,47 @@
 import { CrdbPool, core } from '@cockroachdb/pg';
+import { bigint, pgTable, text } from 'drizzle-orm/pg-core';
+import {
+  crdbLocality,
+  verifyMultiregionSchema,
+  type MultiregionMode,
+  type MultiregionReport,
+} from '@cockroachdb/drizzle';
+
+// tag::mr-check-entity[]
+/**
+ * The `ideas` table declared for Drizzle, marked REGIONAL BY ROW. `crdbLocality`
+ * is a sidecar marker: it records the intended locality and returns the table
+ * unchanged, so it wraps the `pgTable(...)` inline. No `regionColumn` is given,
+ * so the check expects the implicit `crdb_region` homing column.
+ */
+export const ideas = crdbLocality(
+  pgTable('ideas', {
+    id: text('id').primaryKey(),
+    title: text('title').notNull(),
+    votes: bigint('votes', { mode: 'number' }).notNull(),
+  }),
+  { locality: 'REGIONAL_BY_ROW' },
+);
+
+/** The Drizzle schema the multi-region check enumerates. */
+export const schema = { ideas };
+// end::mr-check-entity[]
+
+// tag::mr-check-usage[]
+/**
+ * Opt-in startup check: compare the Drizzle markers against the live schema.
+ * `mode: 'warn'` (the default) logs any mismatch; `validate` throws on any
+ * problem; and a contradiction (markers and schema disagree on where rows live)
+ * throws even in `warn`. Pass the node-postgres pool for the read-only probes.
+ */
+export async function verifyIdeasLocality(
+  pool: CrdbPool,
+  mode: MultiregionMode = 'warn',
+): Promise<MultiregionReport> {
+  return verifyMultiregionSchema(pool.pool, schema, { mode });
+}
+// end::mr-check-usage[]
+
 
 // tag::region-config[]
 /**
