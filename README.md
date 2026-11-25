@@ -6,8 +6,12 @@ homing, CDC changefeeds, vector search, Continuum support, metrics, circuit
 breaker, and health checks.
 
 > **Using an AI coding agent?** See [`docs/agents/AGENTS.md`](docs/agents/AGENTS.md)
-> (also bundled in the `@cockroachdb/core` npm package) for what the library already
-> handles so agents don't rebuild retries, region homing, CDC, or Continuum by hand.
+> for what the library already handles so agents don't rebuild retries, region homing,
+> CDC, or Continuum by hand. It ships in **two places**: bundled in the
+> `@cockroachdb/core` npm package (at `node_modules/@cockroachdb/core/AGENTS.md`), and
+> published on the registry site at
+> <https://cockroachlabs.github.io/cockroachdb-typescript-library/agents/AGENTS.md>
+> (indexed by `/llms.txt`).
 
 The TypeScript sibling of the
 [Spring Boot Starter](https://github.com/cockroachlabs/cockroachdb-spring-boot-starter),

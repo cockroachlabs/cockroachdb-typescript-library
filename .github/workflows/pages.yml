@@ -28,6 +28,19 @@ jobs:
         run: npm run build
       - name: Build static npm registry + landing page
         run: node scripts/build-registry.mjs _site
+      - name: Publish consumer AGENTS.md + llms.txt
+        run: |
+          mkdir -p _site/agents
+          cp docs/agents/AGENTS.md _site/agents/AGENTS.md
+          cat > _site/llms.txt <<'EOF'
+          # cockroachdb-typescript-library
+
+          Consumer guide for coding agents working in a TypeScript/Node app that
+          depends on this library (what it already handles; don't rebuild it):
+          https://cockroachlabs.github.io/cockroachdb-typescript-library/agents/AGENTS.md
+
+          CockroachDB documentation index: https://docs.cockroachlabs.com/llms.txt
+          EOF
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

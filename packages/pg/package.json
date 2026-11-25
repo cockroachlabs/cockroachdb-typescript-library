@@ -1,6 +1,6 @@
 {
   "name": "@cockroachdb/pg",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "node-postgres adapter for CockroachDB: transaction retries on 40001, follower reads, @transactional decorator, metrics, health.",
   "license": "Apache-2.0",
   "type": "module",
