@@ -10,12 +10,12 @@
     "start": "node dist/main.js"
   },
   "dependencies": {
-    "@cockroachdb/pg": "^0.2.0",
-    "@cockroachdb/cdc": "^0.1.0",
-    "@cockroachdb/ai": "^0.2.0",
-    "@cockroachdb/continuum": "^0.2.0",
-    "@cockroachdb/drizzle": "^0.2.0",
-    "@cockroachdb/testing": "^0.2.0",
+    "@cockroachdb/pg": "^0.2.1",
+    "@cockroachdb/cdc": "^0.2.1",
+    "@cockroachdb/ai": "^0.2.1",
+    "@cockroachdb/continuum": "^0.2.1",
+    "@cockroachdb/drizzle": "^0.2.1",
+    "@cockroachdb/testing": "^0.2.1",
     "drizzle-orm": "^0.45.4"
   }
 }

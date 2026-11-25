@@ -5,6 +5,10 @@ serialization conflicts (`SQLSTATE 40001`), follower reads, multi-region row
 homing, CDC changefeeds, vector search, Continuum support, metrics, circuit
 breaker, and health checks.
 
+> **Using an AI coding agent?** See [`docs/agents/AGENTS.md`](docs/agents/AGENTS.md)
+> (also bundled in the `@cockroachdb/core` npm package) for what the library already
+> handles so agents don't rebuild retries, region homing, CDC, or Continuum by hand.
+
 The TypeScript sibling of the
 [Spring Boot Starter](https://github.com/cockroachlabs/cockroachdb-spring-boot-starter),
 [Go](https://github.com/cockroachlabs/cockroachdb-go-library),

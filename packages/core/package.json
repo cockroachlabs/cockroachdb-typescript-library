@@ -1,6 +1,6 @@
 {
   "name": "@cockroachdb/core",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Driver-agnostic CockroachDB client core: retry, follower reads, region homing, circuit breaker, metrics/health.",
   "license": "Apache-2.0",
   "type": "module",
@@ -12,11 +12,16 @@
       "default": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist",
+    "AGENTS.md"
+  ],
   "publishConfig": {
     "registry": "https://cockroachlabs.github.io/cockroachdb-typescript-library/"
   },
   "scripts": {
-    "build": "tsc -b"
+    "build": "tsc -b",
+    "prepack": "cp ../../docs/agents/AGENTS.md ./AGENTS.md",
+    "postpack": "rm -f ./AGENTS.md"
   }
 }
