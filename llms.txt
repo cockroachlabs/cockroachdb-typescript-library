@@ -1,0 +1,7 @@
+# cockroachdb-typescript-library
+
+Consumer guide for coding agents working in a TypeScript/Node app that
+depends on this library (what it already handles; don't rebuild it):
+https://cockroachlabs.github.io/cockroachdb-typescript-library/agents/AGENTS.md
+
+CockroachDB documentation index: https://docs.cockroachlabs.com/llms.txt
