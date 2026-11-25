@@ -1,6 +1,6 @@
 {
   "name": "@cockroachdb/testing",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Test harness for CockroachDB client code: concurrency runner, retry simulator, and a fake SQLSTATE error.",
   "license": "Apache-2.0",
   "type": "module",

@@ -1,6 +1,6 @@
 {
   "name": "@cockroachdb/cdc",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "CockroachDB change data capture: changefeed SQL builder, webhook sink handler, event parsing, and metrics.",
   "license": "Apache-2.0",
   "type": "module",

@@ -1,6 +1,6 @@
 {
   "name": "@cockroachdb/drizzle",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Drizzle ORM adapter for CockroachDB: transaction retries on serialization conflicts (40001).",
   "license": "Apache-2.0",
   "type": "module",
