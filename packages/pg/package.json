@@ -1,6 +1,6 @@
 {
   "name": "@cockroachdb/pg",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "node-postgres adapter for CockroachDB: transaction retries on 40001, follower reads, @transactional decorator, metrics, health.",
   "license": "Apache-2.0",
   "type": "module",
@@ -12,7 +12,9 @@
       "default": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "registry": "https://cockroachlabs.github.io/cockroachdb-typescript-library/"
   },

@@ -3,3 +3,4 @@ dist/
 *.tsbuildinfo
 _site/
 .DS_Store
+packages/core/AGENTS.md
